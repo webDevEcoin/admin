@@ -2,6 +2,10 @@
 
 require "inc/header.php";
 
+/* echo "<pre>";
+print_r(getAllProducts());
+echo "</pre>"; */
+$datas = getAllProducts();
 ?>
 
 <div class="table-responsive">
@@ -16,11 +20,15 @@ require "inc/header.php";
             </tr>
         </thead>
         <tbody>
+            <?php   
+
+foreach($datas as $data):
+?>
             <tr class="">
-                <td>R1C1</td>
-                <td>R1C2</td>
-                <td>R1C3</td>
-                <td>R1C3</td>
+                <td><?= $data['id']   ?></td>
+                <td><?= $data['nom']   ?></td>
+                <td><?= $data['price']   ?></td>
+                <td><?= $data['qty']   ?></td>
                 <td>
                     <a class="btn btn-primary btn-sm " href="#" role="button"> 
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -31,7 +39,10 @@ require "inc/header.php";
                     </a>
                 </td>
             </tr>
-           
+            <?php   
+
+endforeach;
+?> 
         </tbody>
     </table>
 </div>
