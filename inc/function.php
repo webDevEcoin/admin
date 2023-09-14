@@ -15,7 +15,7 @@ function add(Array $data){
 
 function getAllProducts(){
     global $connect;
-    $sql ="SELECT * FROM products";
+    $sql ="SELECT * FROM products order By id";
     $q = mysqli_query($connect,$sql);
     $num  = mysqli_num_rows($q);
     if($num>0){
@@ -44,5 +44,21 @@ function idExist($id){
 }
 
 
+function getProductById($id){
+    global $connect;
+    $sql ="SELECT * FROM products where id = $id limit 1";
+    $q = mysqli_query($connect,$sql);   
+    return mysqli_fetch_array($q,MYSQLI_ASSOC);
+}
 
 
+
+
+
+function update(Array $data){
+    global $connect;
+    $sql ="UPDATE products SET nom =  '{$data['nom']}', price = {$data['price']},qty={$data['qty']} WHERE id = {$data['cid']}";
+    $q = mysqli_query($connect,$sql);
+    if($q)  return 1;
+    else return 0;
+}
