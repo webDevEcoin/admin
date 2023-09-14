@@ -1,12 +1,10 @@
 <?php
-
 require "inc/header.php";
-
-/* echo "<pre>";
-print_r(getAllProducts());
-echo "</pre>"; */
 $datas = getAllProducts();
+$message = (isset($_GET['msg']))?$_GET['msg']:NULL;
+if($message) echo "<h1>$message</h1>";
 ?>
+
 
 <div class="table-responsive">
     <table class="table table-primary">
@@ -21,7 +19,6 @@ $datas = getAllProducts();
         </thead>
         <tbody>
             <?php   
-
 foreach($datas as $data):
 ?>
             <tr class="">
@@ -30,17 +27,16 @@ foreach($datas as $data):
                 <td><?= $data['price']   ?></td>
                 <td><?= $data['qty']   ?></td>
                 <td>
-                    <a class="btn btn-primary btn-sm " href="#" role="button"> 
+                    <a class="btn btn-primary btn-sm " href="edit.php?p=<?= $data['id']   ?>" role="button"> 
                     <i class="fa-solid fa-pen-to-square"></i>
                     </a>
 
-                    <a class="btn btn-danger btn-sm " href="#" role="button"> 
+                    <a class="btn btn-danger btn-sm " href="delete.php?p=<?= $data['id']   ?>" role="button"> 
                     <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>
             </tr>
             <?php   
-
 endforeach;
 ?> 
         </tbody>
